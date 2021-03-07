@@ -37,6 +37,7 @@ interface GenreAnime {
 
 interface AnimeInfo {
     title: string;
+    image: string;
     synopsis: string;
     details: {
         [detail_key: string]: string;
