@@ -4,6 +4,7 @@ interface Anime {
     url: string;
     release: string;
     episode: number;
+    parse_name: string;
 }
 
 interface Animes {
