@@ -11,17 +11,12 @@ const request = got.extend({
 });
 
 module.exports = class OtakuDesu {
-  /**
-   * 
-   * @param {boolean?} raw
-   */
-  constructor(raw) {
-    this.isRaw = raw || false;
+  constructor() {
     this.genreList = [];
   }
 
   async genres() {
-    if (this.genreList.length > 5) return this.isRaw ? JSON.stringify(this.genreList) : this.genreList;
+    if (this.genreList.length > 5) return this.genreList;
     else {
       const response = await request(genres);
       const $ = load(response.body);
@@ -33,7 +28,7 @@ module.exports = class OtakuDesu {
           url: baseURL + genreA.attr('href')
         }
       });
-      return this.isRaw ? JSON.stringify(this.genreList) : this.genreList;
+      return this.genreList;
     }
   }
 
@@ -43,7 +38,7 @@ module.exports = class OtakuDesu {
    */
   async anime(animeParse) {
     const response = await request(anime(animeParse));
-    if (response.statusCode === 301) return this.isRaw ? JSON.stringify({}) : {};
+    if (response.statusCode === 301) return {};
     else {
       const data = {};
       const $ = load(response.body);
@@ -78,7 +73,7 @@ module.exports = class OtakuDesu {
       });
 
       data['episodes'] = episodes_;
-      return this.isRaw ? JSON.stringify(data) : data;
+      return data;
     }
   }
 
@@ -118,7 +113,7 @@ module.exports = class OtakuDesu {
             downloads[index]['title'] = $an(titleElement).text().trim();
           });
         }
-        return this.isRaw ? JSON.stringify(downloads) : downloads;
+        return downloads;
   }
 
   /**
@@ -130,7 +125,7 @@ module.exports = class OtakuDesu {
     const $ = load(response.body);
 
     const animesEl = $('ul.chivsrc > li');
-    if (animesEl.length < 1) return this.isRaw ? JSON.stringify([]) : [];
+    if (animesEl.length < 1) return [];
     else {
       const animes = [];
       animesEl.each(async (i, el) => {
@@ -147,7 +142,7 @@ module.exports = class OtakuDesu {
         const parse = url.split('/').filter(t => t !== '').pop();
         animes[i] = { name, image, meta, url, parse_name: parse };
       });
-      return this.isRaw ? JSON.stringify(animes) : animes;
+      return animes;
     }
   }
 
@@ -157,7 +152,7 @@ module.exports = class OtakuDesu {
    */
   async genreAnimes(genreN) {
     const response = await request(genre(genreN.toLowerCase()));
-    if (response.statusCode === 301) return this.isRaw ? JSON.stringify([]) : [];
+    if (response.statusCode === 301) return [];
     else {
       const animes = [];
       const $ = load(response.body);
@@ -178,7 +173,7 @@ module.exports = class OtakuDesu {
         const date = $(el).find('.col-anime-date').text().trim();
         animes[i] = { name, url, studio, date, eps, rate, genres, image, synopsis };
       });
-      return this.isRaw ? JSON.stringify(animes) : animes;
+      return animes;
     }
   }
 
@@ -200,7 +195,7 @@ module.exports = class OtakuDesu {
         if (name.length < 1) return;
         news[i] = { name, picture, url: desu_url, release, episode }
     });
-    return this.isRaw ? JSON.stringify(news) : news;
+    return news;
   }
 
   async animes() {
@@ -215,7 +210,7 @@ module.exports = class OtakuDesu {
       const url = $(element).find('.hodebgst').attr('href');
       animes[index] = { index: number, title, url };
     });
-    return this.isRaw ? JSON.stringify(animes) : animes;
+    return animes;
   }
 
   async ongoing() {
@@ -240,7 +235,6 @@ module.exports = class OtakuDesu {
           name, release, picture, episode, url: desu_url
         }
       });
-      if (this.isRaw) return JSON.stringify(animes);
-      else return animes;
+      return animes;
   }
 }
