@@ -45,6 +45,8 @@ module.exports = class OtakuDesu {
       const details = $('.infozingle > p');
       const detailss_k = [];
       const detailss_v = [];
+      const image = $('.fotoanime > img').attr('src');
+      data['image'] = image;
 
       details.each((i, el) => {
         const keyText = $(el).text().split(':')[0].trim();
