@@ -1,4 +1,4 @@
-const { baseURL, endpoints: { ongoing, genres, genre, search_anime, anime, animes } } = require('./constants');
+const { baseURL, endpoints: { ongoing, genres, genre, search_anime, anime, animes: animes_url } } = require('./constants');
 const { load } = require('cheerio');
 const got = require('got').default;
 
@@ -171,7 +171,7 @@ module.exports = class OtakuDesu {
         const image = $(el).find('.col-anime-cover > img').attr('src');
         const synopsis = $(el).find('.col-synopsis').text().trim();
         const date = $(el).find('.col-anime-date').text().trim();
-        animes[i] = { name, url, studio, date, eps, rate, genres, image, synopsis };
+        animes[i] = { name, url, studio, date, eps, rate, genres, image, synopsis, parse_name: url.split('/').filter(t => t !== '').pop() };
       });
       return animes;
     }
@@ -193,13 +193,13 @@ module.exports = class OtakuDesu {
         const picture =$(el).find('.thumb > a > .thumbz > img').attr('src');
         const name = $(el).find('.thumb > a > .thumbz > .jdlflm').text().trim();
         if (name.length < 1) return;
-        news[i] = { name, picture, url: desu_url, release, episode }
+        news[i] = { name, picture, url: desu_url, release, episode, parse_name: desu_url.split('/').filter(t => t !== '').pop() }
     });
     return news;
   }
 
   async animes() {
-    const { body } = await request.get(animes);
+    const { body } = await request.get(animes_url);
     const $ = load(body);
 
     const animes = [];
@@ -208,7 +208,7 @@ module.exports = class OtakuDesu {
       const number = $(element).find('.barispenz').text().trim();
       const title = $(element).find('.hodebgst').attr('title');
       const url = $(element).find('.hodebgst').attr('href');
-      animes[index] = { index: number, title, url };
+      animes[index] = { index: number, title, url, parse_name: url.split('/').filter(t => t !== '').pop() };
     });
     return animes;
   }
@@ -232,7 +232,7 @@ module.exports = class OtakuDesu {
         const name = animeElement.find('.thumb > a > .thumbz > .jdlflm').text().trim();
         if (name.length < 1) return;
         animes[i] = {
-          name, release, picture, episode, url: desu_url
+          name, release, picture, episode, url: desu_url, parse_name: desu_url.split('/').filter(t => t !== '').pop()
         }
       });
       return animes;

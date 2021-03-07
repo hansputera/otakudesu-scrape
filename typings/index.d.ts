@@ -10,6 +10,7 @@ interface Animes {
     index: number;
     title: string;
     url: string;
+    parse_name: string;
 }
 
 interface searchAnime {
@@ -30,6 +31,7 @@ interface GenreAnime {
     genres: string[];
     image: string;
     synopsis: string;
+    parse_name: string;
 }
 
 interface AnimeInfo {
