@@ -63,14 +63,14 @@ interface Genre {
 }
 
 declare class OtakuDesu {
-    constructor(isRaw?: boolean);
+    constructor();
     public genreList: Genre[];
     public home(): Promise<Anime[]>;
     public animes(): Promise<Animes[]>;
     public ongoing(): Promise<Anime[]>;
     public genreAnimes(genre: string): Promise<GenreAnime[] | undefined>;
     public searchAnime(anime: string): Promise<searchAnime[]>;
-    public downloads(): Promise<Download[] | undefined>;
+    public downloads(url: string): Promise<Download[] | undefined>;
     public anime(anime_parse: string): Promise<AnimeInfo>;
     public genres(): Promise<Genre[]>;
 }
