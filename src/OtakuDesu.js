@@ -79,8 +79,12 @@ module.exports = class OtakuDesu {
     }
   }
 
+  /**
+   * 
+   * @param {String} episodeURL
+   */
   async downloads(episodeURL) {
-        if (/(https?):\/\/otakudesu\.(moe)\/(.+[a-z]|.*?)/gi.exec(episodeURL)) throw Error('Invalid OtakuDesu URL');
+        if (!/(https?):\/\/otakudesu\.(moe)\/(.+[a-z]|.*?)/gi.exec(episodeURL) || episodeURL.match('anime')) throw Error('Invalid OtakuDesu Download URL');
         const animeResponse = await got(episodeURL);
         const $an = load(animeResponse.body);
         if (!/otaku/gi.test($an('title').text().trim())) return undefined;
