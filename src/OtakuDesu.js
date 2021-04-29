@@ -90,7 +90,7 @@ module.exports = class OtakuDesu {
         if (!/otaku/gi.test($an('title').text().trim())) return undefined;
 
         const downloads = [];
-        let downloadsEl = $an('#venkonten > .download > ul > li');
+        let downloadsEl = $an('#venkonten > .venser > .venutama > .download > ul > li');
         if (/batch/gi.test(episodeURL)) downloadsEl = $an('.batchlink > ul > li');
         if (!downloadsEl.length) return undefined;
         downloadsEl.each((i, element) => {
