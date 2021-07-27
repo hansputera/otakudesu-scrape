@@ -1,8 +1,4 @@
-# Otaku Desu Scrape
-
-A module that retrieves data from otakudesu.moe
-
-This module I created uses `cheerio`, and `got`
+![otakudesu-scrape](https://socialify.git.ci/hansputera/otakudesu-scrape/image?description=1&font=Inter&forks=1&issues=1&language=1&logo=https%3A%2F%2Fi0.wp.com%2Fotakudesu.moe%2Fwp-content%2Fuploads%2F2017%2F09%2FOtaku-Desu.jpg&owner=1&stargazers=1&theme=Light)
 
 # Installation
 
