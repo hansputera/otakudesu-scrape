@@ -1,4 +1,4 @@
-const otaku = new (require('./index'))(false);
+const otaku = require(".");
 
 (async() => {
   const animes = await otaku.home();

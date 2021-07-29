@@ -1,1 +1,1 @@
-module.exports = require('./src/OtakuDesu');
+module.exports = new (require('./src/OtakuDesu'))();

@@ -4,18 +4,38 @@
 
 > npm install git+https://github.com/hansputera/otakudesu-scrape
 
+or
+
+> npm install @hansputera/otakudesu.moe
+
 # Usage
 
-- Get the latest anime updates on the main page. `await otakudesu.home()`
+- Get the latest anime updates on the main page. 
 
-- Get the latest anime from the ongoing-anime category. `await otakudesu.ongoing()`
+> Use: `await otakudesu.home()`
 
-- Get all of the anime listed using alphabetical order. `await otakudesu.animes()`
+- Get the latest anime from the ongoing-anime category.
 
-- Search anime by keyword. `await otakudesu.searchAnime(query)`
+> Use: `await otakudesu.ongoing()`
 
-- Get all anime categorized as `x` genre. `await otakudesu.genreAnimes(x)`
+- Get all of the anime listed using alphabetical order.
 
-- Get anime information such as synopsis, episodes, anime names, and URLs of each episode. `await otakudesu.anime(anime_parse_name)`
+> Use: `await otakudesu.animes()`
 
-- Get the episode download link from the anime information link. (Link can be obtained through the corresponding anime page). `await otakudesu.downloads(home_url_anime)`
+- Search anime by keyword. 
+
+> Use: `await otakudesu.searchAnime(query)`
+
+- Get all anime categorized as `x` genre. 
+
+> Use: `await otakudesu.genreAnimes(x)`
+
+- Get anime information such as synopsis, episodes, anime names, and URLs of each episode. 
+
+> Use: `await otakudesu.anime(anime_parse_name)`
+
+Get `anime_parse_name` from property `parse_name`
+
+- Get the episode download link from the anime information link. (Link can be obtained through the corresponding anime page). 
+
+> Use: `await otakudesu.downloads(home_url_anime)`
