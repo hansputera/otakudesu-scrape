@@ -1,5 +1,5 @@
 {
-  "name": "@hansputera/otakudesu.moe",
+  "name": "@hansputera/otakudesu-scrape",
   "version": "1.0.0",
   "description": "A module that retrieves data from otakudesu.moe",
   "main": "index.js",
@@ -10,11 +10,14 @@
   "keywords": [
     "otakudesu", "otakudesu scrape", "scrape otakudesu", "anime"
   ],
-  "author": "Hanif",
+  "author": "hansputera",
   "license": "MIT",
   "dependencies": {
     "cheerio": "^1.0.0-rc.5",
     "got": "^11.8.2"
   },
-  "homepage": "https://github.com/hansputera/otakudesu-scrape"
+  "homepage": "https://github.com/hansputera/otakudesu-scrape",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
 }

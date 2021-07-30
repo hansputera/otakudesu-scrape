@@ -6,7 +6,7 @@
 
 or
 
-> npm install @hansputera/otakudesu.moe
+> npm install @hansputera/otakudesu-scrape
 
 # Usage
 
