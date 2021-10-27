@@ -2,7 +2,7 @@ import {load} from 'cheerio';
 import {TinyHttpClient} from 'hanif-tiny-http';
 
 import {ListEndpoint} from '../constants';
-import {OngoingAnime} from '../types';
+import type {OngoingAnime} from '../types';
 import {OtakUtil} from '../util';
 
 export const getOngoingList = async (request: TinyHttpClient):
