@@ -1,5 +1,5 @@
 import { TinyHttpClient } from 'hanif-tiny-http';
-import type { Genre, Anime, OngoingAnime } from './types';
+import type { Genre, Anime, OngoingAnime, ExtraAnime, Download } from './types';
 /**
  * @description - Otakudesu Instance, here you go.
  */
@@ -27,4 +27,16 @@ export declare class OtakudesuInstance {
      * @return {Anime[]}
      */
     getAnime(anime: string): Promise<Anime[]>;
+    /**
+     * @description You can use this method for getting extra anime information.
+     * @param {String} slugAnime - Fill this parameter with anime slug.
+     * @return {ExtraAnime}
+     */
+    getExtraAnime(slugAnime: string): Promise<ExtraAnime | undefined>;
+    /**
+     * @description You can use this method for getting otakudesu download(s) url.
+     * @param {String} downloadUrl - Download URL (Episode URL)
+     * @return {Download[]}
+     */
+    getDownloadsByUrl(downloadUrl: string): Promise<Download[]>;
 }

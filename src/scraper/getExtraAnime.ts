@@ -8,13 +8,13 @@ import {OtakUtil} from '../util';
 export const getExtraAnime = async (request: TinyHttpClient, slug: string):
 Promise<ExtraAnime | undefined> => {
   const response = await request.get(getAnimeEndpoint(slug));
-  if (response.statusCode === 301) return undefined;
+  if (!response.isOk) return undefined;
   const $ = load(response.getContent());
 
   const details = $('.infozingle > p').map((_, el) => {
     const value = $(el).text().split(':')[1].trim();
     return {
-      key: $(el).text().split(':')[0].trim(),
+      key: $(el).text().split(':')[0].trim().toLowerCase(),
       value: value.split(',').length > 3 ? value.split(', ') : value,
     };
   }).toArray().reduce((x: Record<string, string | string[]>, y) => {

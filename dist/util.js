@@ -52,5 +52,13 @@ class OtakUtil extends util_1.Util {
             month,
         };
     }
+    /**
+     * @param {String} url - Validate Download URL
+     * @return {Boolean}
+     */
+    static validateDownloadUrl(url) {
+        return /^(http(s)?):\/\/otakudesu((.)vip|moe|tv)\/[a-zA-Z0-9].+(\/)?/gi
+            .test(url) && this.validateURL(url);
+    }
 }
 exports.OtakUtil = OtakUtil;

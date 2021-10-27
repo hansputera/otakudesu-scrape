@@ -24,6 +24,17 @@ export interface Episode {
     date: string;
 };
 
+export interface DownloadLink {
+    name: string;
+    url: string;
+};
+
+export interface Download {
+    resolution: string;
+    links: DownloadLink[];
+    title?: string;
+}
+
 export type OngoingAnime = Omit<Anime, 'meta'> & {
     releaseAt: ResolvedReleaseDate;
     episode: number;

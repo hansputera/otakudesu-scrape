@@ -4,7 +4,6 @@ exports.OtakudesuInstance = void 0;
 const hanif_tiny_http_1 = require("hanif-tiny-http");
 const constants_1 = require("./constants");
 const scraper_1 = require("./scraper");
-const listOngoing_1 = require("./scraper/listOngoing");
 const util_1 = require("./util");
 /**
  * @description - Otakudesu Instance, here you go.
@@ -39,7 +38,7 @@ class OtakudesuInstance {
      * @return {OngoingAnime[]}
      */
     listOngoing() {
-        return (0, listOngoing_1.getOngoingList)(this.request);
+        return (0, scraper_1.getOngoingList)(this.request);
     }
     /**
      * @description You can use this method for getting anime information.
@@ -48,6 +47,22 @@ class OtakudesuInstance {
      */
     getAnime(anime) {
         return (0, scraper_1.getAnime)(this.request, anime);
+    }
+    /**
+     * @description You can use this method for getting extra anime information.
+     * @param {String} slugAnime - Fill this parameter with anime slug.
+     * @return {ExtraAnime}
+     */
+    getExtraAnime(slugAnime) {
+        return (0, scraper_1.getExtraAnime)(this.request, slugAnime);
+    }
+    /**
+     * @description You can use this method for getting otakudesu download(s) url.
+     * @param {String} downloadUrl - Download URL (Episode URL)
+     * @return {Download[]}
+     */
+    getDownloadsByUrl(downloadUrl) {
+        return (0, scraper_1.getDownloads)(this.request, downloadUrl);
     }
 }
 exports.OtakudesuInstance = OtakudesuInstance;

@@ -63,4 +63,13 @@ export class OtakUtil extends Util {
       month,
     };
   }
+
+  /**
+   * @param {String} url - Validate Download URL
+   * @return {Boolean}
+   */
+  static validateDownloadUrl(url: string): boolean {
+    return /^(http(s)?):\/\/otakudesu((.)vip|moe|tv)\/[a-zA-Z0-9].+(\/)?/gi
+        .test(url) && this.validateURL(url);
+  }
 }

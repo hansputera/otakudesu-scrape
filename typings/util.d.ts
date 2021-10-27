@@ -41,4 +41,9 @@ export declare class OtakUtil extends Util {
      * @return {ResolvedReleaseDate}
      */
     static resolveReleaseDate(date: string): ResolvedReleaseDate;
+    /**
+     * @param {String} url - Validate Download URL
+     * @return {Boolean}
+     */
+    static validateDownloadUrl(url: string): boolean;
 }

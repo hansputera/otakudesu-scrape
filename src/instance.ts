@@ -1,9 +1,12 @@
 import {TinyHttpClient} from 'hanif-tiny-http';
 
 import {baseURL} from './constants';
-import {getAnime, getExtraAnime, getGenreList, getOngoingList} from './scraper';
+import {
+  getAnime, getExtraAnime, getGenreList,
+  getOngoingList, getDownloads,
+} from './scraper';
 
-import type {Genre, Anime, OngoingAnime, ExtraAnime} from './types';
+import type {Genre, Anime, OngoingAnime, ExtraAnime, Download} from './types';
 import {OtakUtil} from './util';
 
 /**
@@ -59,5 +62,14 @@ export class OtakudesuInstance {
    */
   public getExtraAnime(slugAnime: string): Promise<ExtraAnime | undefined> {
     return getExtraAnime(this.request, slugAnime);
+  }
+
+  /**
+   * @description You can use this method for getting otakudesu download(s) url.
+   * @param {String} downloadUrl - Download URL (Episode URL)
+   * @return {Download[]}
+   */
+  public getDownloadsByUrl(downloadUrl: string): Promise<Download[]> {
+    return getDownloads(this.request, downloadUrl);
   }
 }
