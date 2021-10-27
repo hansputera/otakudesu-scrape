@@ -3,10 +3,13 @@ import {TinyHttpClient} from 'hanif-tiny-http';
 import {baseURL} from './constants';
 import {
   getAnime, getExtraAnime, getGenreList,
-  getOngoingList, getDownloads,
+  getOngoingList, getDownloads, getHomeUpdates,
 } from './scraper';
 
-import type {Genre, Anime, OngoingAnime, ExtraAnime, Download} from './types';
+import type {
+  Genre, Anime, OngoingAnime, ExtraAnime,
+  Download, HomeAnimeUpdate,
+} from './types';
 import {OtakUtil} from './util';
 
 /**
@@ -44,6 +47,15 @@ export class OtakudesuInstance {
    */
   public listOngoing(): Promise<OngoingAnime[]> {
     return getOngoingList(this.request);
+  }
+
+  /**
+   * @description You can use this method for getting news update from
+   * site homepage.
+   * @return {HomeAnimeUpdate[]}
+   */
+  public listHomeUpdate(): Promise<HomeAnimeUpdate[]> {
+    return getHomeUpdates(this.request);
   }
 
   /**

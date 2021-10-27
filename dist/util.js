@@ -48,7 +48,9 @@ class OtakUtil extends util_1.Util {
         const day = skat.pop();
         return {
             date: numDate ? parseInt(numDate) : 0,
-            day: day === 'None' ? 'Random' : exports.daysDefined[day === null || day === void 0 ? void 0 : day.toLowerCase()],
+            day: (day === 'None' && Number.isNaN(day) ? 'Random' : (day !== 'None' &&
+                !Number.isNaN(day) ? 'Maybe time: ' + (day === null || day === void 0 ? void 0 : day.toString()) :
+                exports.daysDefined[day === null || day === void 0 ? void 0 : day.toLowerCase()])),
             month,
         };
     }

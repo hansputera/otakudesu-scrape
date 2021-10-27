@@ -50,3 +50,5 @@ export type ExtraAnime = Omit<Anime, 'meta' | 'slug'> & {
     details: Record<string, string | string[]>;
     episodes: Episode[];
 };
+
+export type HomeAnimeUpdate = OngoingAnime;

@@ -41,6 +41,14 @@ class OtakudesuInstance {
         return (0, scraper_1.getOngoingList)(this.request);
     }
     /**
+     * @description You can use this method for getting news update from
+     * site homepage.
+     * @return {HomeAnimeUpdate[]}
+     */
+    listHomeUpdate() {
+        return (0, scraper_1.getHomeUpdates)(this.request);
+    }
+    /**
      * @description You can use this method for getting anime information.
      * @param {String} anime - Fill this parameter with anime name. (Eg. Boruto)
      * @return {Anime[]}

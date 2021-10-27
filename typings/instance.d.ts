@@ -1,5 +1,5 @@
 import { TinyHttpClient } from 'hanif-tiny-http';
-import type { Genre, Anime, OngoingAnime, ExtraAnime, Download } from './types';
+import type { Genre, Anime, OngoingAnime, ExtraAnime, Download, HomeAnimeUpdate } from './types';
 /**
  * @description - Otakudesu Instance, here you go.
  */
@@ -21,6 +21,12 @@ export declare class OtakudesuInstance {
      * @return {OngoingAnime[]}
      */
     listOngoing(): Promise<OngoingAnime[]>;
+    /**
+     * @description You can use this method for getting news update from
+     * site homepage.
+     * @return {HomeAnimeUpdate[]}
+     */
+    listHomeUpdate(): Promise<HomeAnimeUpdate[]>;
     /**
      * @description You can use this method for getting anime information.
      * @param {String} anime - Fill this parameter with anime name. (Eg. Boruto)

@@ -57,9 +57,10 @@ export class OtakUtil extends Util {
 
     return {
       date: numDate ? parseInt(numDate) : 0,
-      day: day === 'None' ? 'Random' : daysDefined[
-          day?.toLowerCase() as keyof typeof daysDefined
-      ],
+      day: (day === 'None' && Number.isNaN(day) ? 'Random' : (day !== 'None' &&
+      !Number.isNaN(day) ? 'Maybe time: ' + day?.toString() as string :
+      daysDefined[
+        day?.toLowerCase() as keyof typeof daysDefined])),
       month,
     };
   }
