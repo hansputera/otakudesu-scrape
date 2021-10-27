@@ -1,11 +1,11 @@
 {
   "name": "@hansputera/otakudesu-scrape",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A module that retrieves data from otakudesu.vip. Now with TypeScript!",
   "main": "./dist/index.js",
   "typings": "./typings/index.d.ts",
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf dist && rimraf typings",
     "build": "npm run clean && tsc --build tsconfig.json",
     "test": "npm run build && node ./dist/test",
     "lint": "eslint \"./src/**/*.ts\" --fix"
