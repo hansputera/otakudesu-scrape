@@ -1,10 +1,9 @@
 import {TinyHttpClient} from 'hanif-tiny-http';
 
 import {baseURL} from './constants';
-import {getAnime, getGenreList} from './scraper';
-import {getOngoingList} from './scraper/listOngoing';
+import {getAnime, getExtraAnime, getGenreList, getOngoingList} from './scraper';
 
-import type {Genre, Anime, OngoingAnime} from './types';
+import type {Genre, Anime, OngoingAnime, ExtraAnime} from './types';
 import {OtakUtil} from './util';
 
 /**
@@ -51,5 +50,14 @@ export class OtakudesuInstance {
    */
   public getAnime(anime: string): Promise<Anime[]> {
     return getAnime(this.request, anime);
+  }
+
+  /**
+   * @description You can use this method for getting extra anime information.
+   * @param {String} slugAnime - Fill this parameter with anime slug.
+   * @return {ExtraAnime}
+   */
+  public getExtraAnime(slugAnime: string): Promise<ExtraAnime | undefined> {
+    return getExtraAnime(this.request, slugAnime);
   }
 }

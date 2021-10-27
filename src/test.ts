@@ -2,5 +2,6 @@ import {OtakudesuInstance} from './instance';
 
 const ins = new OtakudesuInstance();
 
-ins.getAnime('Boruto').then(console.log);
-ins.listOngoing().then(console.log);
+ins.getAnime('Boruto').then((animes) => {
+  console.log(animes);
+});
