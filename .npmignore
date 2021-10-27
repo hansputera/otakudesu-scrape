@@ -2,3 +2,4 @@ node_modules
 yarn.lock
 .eslintignore
 .eslintrc.json
+src/
