@@ -18,6 +18,11 @@ export interface Anime {
     slug: string;
 };
 
+export type AnimeListItem = Omit<Anime,
+'meta' | 'image'> & {
+    _index: number;
+};
+
 export interface Episode {
     title: string;
     url: string;

@@ -14,6 +14,9 @@ export interface Anime {
     /** used for getting anime information and download(s) url */
     slug: string;
 }
+export declare type AnimeListItem = Omit<Anime, 'meta' | 'image'> & {
+    _index: number;
+};
 export interface Episode {
     title: string;
     url: string;
