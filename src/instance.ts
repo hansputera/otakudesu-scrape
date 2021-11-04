@@ -1,9 +1,11 @@
 import {TinyHttpClient} from 'hanif-tiny-http';
+import {PassThrough} from 'node:stream';
 
 import {baseURL} from './constants';
 import {
   getAnime, getExtraAnime, getGenreList,
   getOngoingList, getDownloads, getHomeUpdates,
+  getAnimeStream,
 } from './scraper';
 
 import type {
@@ -83,5 +85,13 @@ export class OtakudesuInstance {
    */
   public getDownloadsByUrl(downloadUrl: string): Promise<Download[]> {
     return getDownloads(this.request, downloadUrl);
+  }
+
+  /**
+   * @param {String} downloadUrl - Download URL
+   * @return {PassThrough}
+   */
+  public getStream(downloadUrl: string): Promise<PassThrough | undefined> {
+    return getAnimeStream(this.request, downloadUrl);
   }
 }

@@ -2,11 +2,11 @@
 
 # Installation
 
-> npm install git+https://github.com/hansputera/otakudesu-scrape
+> npm i otakudesu-scrape --only=production
 
 or
 
-> npm install @hansputera/otakudesu-scrape
+> yarn add otakudesu-scrape --production
 
 ## Contribution
 Contribution are welcome :)

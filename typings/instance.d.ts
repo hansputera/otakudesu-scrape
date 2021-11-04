@@ -1,4 +1,6 @@
+/// <reference types="node" />
 import { TinyHttpClient } from 'hanif-tiny-http';
+import { PassThrough } from 'node:stream';
 import type { Genre, Anime, OngoingAnime, ExtraAnime, Download, HomeAnimeUpdate } from './types';
 /**
  * @description - Otakudesu Instance, here you go.
@@ -45,4 +47,9 @@ export declare class OtakudesuInstance {
      * @return {Download[]}
      */
     getDownloadsByUrl(downloadUrl: string): Promise<Download[]>;
+    /**
+     * @param {String} downloadUrl - Download URL
+     * @return {PassThrough}
+     */
+    getStream(downloadUrl: string): Promise<PassThrough | undefined>;
 }

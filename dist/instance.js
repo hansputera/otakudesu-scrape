@@ -72,5 +72,12 @@ class OtakudesuInstance {
     getDownloadsByUrl(downloadUrl) {
         return (0, scraper_1.getDownloads)(this.request, downloadUrl);
     }
+    /**
+     * @param {String} downloadUrl - Download URL
+     * @return {PassThrough}
+     */
+    getStream(downloadUrl) {
+        return (0, scraper_1.getAnimeStream)(this.request, downloadUrl);
+    }
 }
 exports.OtakudesuInstance = OtakudesuInstance;

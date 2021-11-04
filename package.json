@@ -1,6 +1,6 @@
 {
-  "name": "@hansputera/otakudesu-scrape",
-  "version": "2.0.1",
+  "name": "otakudesu-scrape",
+  "version": "1.0.0",
   "description": "A module that retrieves data from otakudesu.vip. Now with TypeScript!",
   "main": "./dist/index.js",
   "typings": "./typings/index.d.ts",
@@ -20,12 +20,9 @@
   "license": "MIT",
   "dependencies": {
     "cheerio": "^1.0.0-rc.5",
-    "hanif-tiny-http": "^1.0.3"
+    "hanif-tiny-http": "^1.0.6"
   },
   "homepage": "https://github.com/hansputera/otakudesu-scrape",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "devDependencies": {
     "@types/node": "^16.11.6",
     "@typescript-eslint/eslint-plugin": "^5.2.0",

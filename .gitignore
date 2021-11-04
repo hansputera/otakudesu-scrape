@@ -1,3 +1,6 @@
 node_modules/
 package-lock.json
 yarn.lock
+src/test.ts
+dist/test.js
+typings/test.*

@@ -17,3 +17,4 @@ __exportStar(require("./getExtraAnime"), exports);
 __exportStar(require("./getDownloads"), exports);
 __exportStar(require("./listOngoing"), exports);
 __exportStar(require("./homeUpdates"), exports);
+__exportStar(require("./getStream"), exports);
