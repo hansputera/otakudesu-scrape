@@ -16,6 +16,7 @@ export interface Anime {
     url: string;
     /** used for getting anime information and download(s) url */
     slug: string;
+    extra: () => Promise<ExtraAnime>;
 };
 
 export type AnimeListItem = Omit<Anime,
@@ -40,12 +41,12 @@ export interface Download {
     title?: string;
 }
 
-export type OngoingAnime = Omit<Anime, 'meta'> & {
+export type OngoingAnime = Omit<Anime, 'meta' | 'extra'> & {
     releaseAt: ResolvedReleaseDate;
     episode: number;
 };
 
-export type ExtraAnime = Omit<Anime, 'meta' | 'slug'> & {
+export type ExtraAnime = Omit<Anime, 'meta' | 'slug' | 'extra'> & {
     synopsis: string;
     details: Record<string, string | string[]>;
     episodes: Episode[];

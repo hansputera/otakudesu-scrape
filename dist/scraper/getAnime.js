@@ -11,8 +11,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAnime = void 0;
 const cheerio_1 = require("cheerio");
+const _1 = require(".");
 const constants_1 = require("../constants");
-const getAnime = (request, q) => __awaiter(void 0, void 0, void 0, function* () {
+const getAnime = (request, q, ext = false) => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield request.get((0, constants_1.getSearchAnimeEndpoint)(q));
     const $ = (0, cheerio_1.load)(response.getContent());
     return $('ul.chivsrc > li').map((_, element) => {
@@ -33,6 +34,10 @@ const getAnime = (request, q) => __awaiter(void 0, void 0, void 0, function* () 
             }, {}),
             url: $(element).find('h2 > a').attr('href'),
             slug: (_a = $(element).find('h2 > a').attr('href')) === null || _a === void 0 ? void 0 : _a.split('/').filter((s) => s.length).pop(),
+            extra: () => {
+                var _a;
+                return (0, _1.getExtraAnime)(request, (_a = $(element).find('h2 > a').attr('href')) === null || _a === void 0 ? void 0 : _a.split('/').filter((s) => s.length).pop());
+            },
         });
     }).toArray();
 });

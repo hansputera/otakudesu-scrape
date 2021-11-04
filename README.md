@@ -8,5 +8,8 @@ or
 
 > yarn add otakudesu-scrape --production
 
+# Documentation
+Need documentation? Go to [Wiki](https://github.com/hansputera/otakudesu-scrape/wiki)
+
 ## Contribution
 Contribution are welcome :)

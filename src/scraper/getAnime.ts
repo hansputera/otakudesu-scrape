@@ -1,10 +1,13 @@
 import {load} from 'cheerio';
 import {TinyHttpClient} from 'hanif-tiny-http';
 
+import {getExtraAnime} from '.';
+import type {ExtraAnime} from '..';
+
 import {getSearchAnimeEndpoint} from '../constants';
 import type {Anime} from '../types';
 
-export const getAnime = async (request: TinyHttpClient, q: string):
+export const getAnime = async (request: TinyHttpClient, q: string, ext = false):
 Promise<Anime[]> => {
   const response = await request.get(getSearchAnimeEndpoint(q));
   const $ = load(response.getContent());
@@ -26,5 +29,9 @@ Promise<Anime[]> => {
     url: $(element).find('h2 > a').attr('href') as string,
     slug: $(element).find('h2 > a').attr('href')?.split('/')
         .filter((s) => s.length).pop() as string,
+    extra: () => getExtraAnime(request,
+        $(element).find('h2 > a').attr('href')?.split('/')
+            .filter((s) => s.length).pop() as string,
+    ) as Promise<ExtraAnime>,
   })).toArray<Anime>();
 };

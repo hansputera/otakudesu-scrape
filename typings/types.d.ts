@@ -13,6 +13,7 @@ export interface Anime {
     url: string;
     /** used for getting anime information and download(s) url */
     slug: string;
+    extra: () => Promise<ExtraAnime>;
 }
 export declare type AnimeListItem = Omit<Anime, 'meta' | 'image'> & {
     _index: number;
@@ -31,11 +32,11 @@ export interface Download {
     links: DownloadLink[];
     title?: string;
 }
-export declare type OngoingAnime = Omit<Anime, 'meta'> & {
+export declare type OngoingAnime = Omit<Anime, 'meta' | 'extra'> & {
     releaseAt: ResolvedReleaseDate;
     episode: number;
 };
-export declare type ExtraAnime = Omit<Anime, 'meta' | 'slug'> & {
+export declare type ExtraAnime = Omit<Anime, 'meta' | 'slug' | 'extra'> & {
     synopsis: string;
     details: Record<string, string | string[]>;
     episodes: Episode[];

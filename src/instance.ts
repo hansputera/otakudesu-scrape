@@ -95,3 +95,4 @@ export class OtakudesuInstance {
     return getAnimeStream(this.request, downloadUrl);
   }
 }
+
