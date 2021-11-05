@@ -2,11 +2,11 @@
 
 # Installation
 
-> npm i otakudesu-scrape --only=production
+> npm i otakudesu-scraper --only=production
 
 or
 
-> yarn add otakudesu-scrape --production
+> yarn add otakudesu-scraper --production
 
 # Documentation
 Need documentation? Go to [Wiki](https://github.com/hansputera/otakudesu-scrape/wiki)
