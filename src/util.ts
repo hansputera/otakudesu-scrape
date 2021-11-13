@@ -1,4 +1,5 @@
 import {Util} from 'hanif-tiny-http/dist/util';
+import {EventEmitter} from 'node:events';
 
 export const monthsDefined = {
   'okt': 'October',
@@ -24,6 +25,10 @@ export const daysDefined = {
   'sabtu': 'Saturday',
   'minggu': 'Sunday',
 };
+
+export const signal = new EventEmitter({
+  'captureRejections': true,
+});
 
 export interface ResolvedReleaseDate {
     date: number;
@@ -74,3 +79,27 @@ export class OtakUtil extends Util {
         .test(url) && this.validateURL(url);
   }
 }
+
+export const handleException = <T extends Function>
+  (__: object, _: string, descriptor: TypedPropertyDescriptor<T>):
+TypedPropertyDescriptor<T> => {
+  return {
+    configurable: true,
+    get(this: T): T {
+      try {
+        const bound = descriptor.value?.bind(this);
+        Object.defineProperty(this, _, {
+          value: bound,
+          configurable: true,
+          writable: true,
+        });
+        signal.emit('executed', {t: bound, timestamp: Date.now()});
+
+        return bound;
+      } catch (err) {
+        signal.emit('error', err);
+        return undefined as unknown as T;
+      }
+    },
+  };
+};

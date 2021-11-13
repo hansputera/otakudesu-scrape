@@ -10,7 +10,8 @@
         "strictNullChecks": true,
         "strictPropertyInitialization": true,
         "declarationDir": "./typings",
-        "outDir": "./dist"
+        "outDir": "./dist",
+        "experimentalDecorators": true
     },
     "include": [
         "src/**/*"
