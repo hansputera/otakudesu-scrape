@@ -1,6 +1,6 @@
 {
   "name": "otakudesu-scraper",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "A module that retrieves data from otakudesu.vip. Now with TypeScript!",
   "main": "./dist/index.js",
   "typings": "./typings/index.d.ts",
