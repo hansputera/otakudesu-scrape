@@ -3,3 +3,4 @@ yarn.lock
 .eslintignore
 .eslintrc.json
 src/
+docs/

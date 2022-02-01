@@ -8,7 +8,8 @@
     "clean": "rimraf dist && rimraf typings",
     "build": "npm run clean && tsc --build tsconfig.json",
     "test": "npm run build && node ./dist/test",
-    "lint": "eslint \"./src/**/*.ts\" --fix"
+    "lint": "eslint \"./src/**/*.ts\" --fix",
+    "docs": "typedoc"
   },
   "keywords": [
     "otakudesu",
