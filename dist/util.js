@@ -63,7 +63,7 @@ class OtakUtil extends util_1.Util {
      * @return {Boolean}
      */
     static validateDownloadUrl(url) {
-        return /^(http(s)?):\/\/otakudesu((.)vip|moe|tv)\/[a-zA-Z0-9].+(\/)?/gi
+        return /^(http(s)?):\/\/(.*)\.(.*)\/[a-zA-Z0-9].+(\/)?/gi
             .test(url) && this.validateURL(url);
     }
 }

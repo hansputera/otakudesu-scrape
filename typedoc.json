@@ -1,0 +1,12 @@
+{
+    "entryPoints": ["./src"],
+    "out": "docs",
+    "includeVersion": true,
+    "exclude": [
+        "**/*.json",
+        "**/test.*"
+    ],
+    "name": "Otakudesu Scraper",
+    "pretty": true,
+    "categorizeByGroup": true
+}
