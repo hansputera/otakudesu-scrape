@@ -1,6 +1,6 @@
 {
   "name": "otakudesu-scraper",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "A module that retrieves data from otakudesu.vip. Now with TypeScript!",
   "main": "./dist/index.js",
   "typings": "./typings/index.d.ts",
@@ -8,7 +8,8 @@
     "clean": "rimraf dist && rimraf typings",
     "build": "npm run clean && tsc --build tsconfig.json",
     "test": "npm run build && node ./dist/test",
-    "lint": "eslint \"./src/**/*.ts\" --fix"
+    "lint": "eslint \"./src/**/*.ts\" --fix",
+    "docs": "typedoc"
   },
   "keywords": [
     "otakudesu",
@@ -30,6 +31,7 @@
     "eslint": "^8.1.0",
     "eslint-config-google": "^0.14.0",
     "rimraf": "^3.0.2",
+    "typedoc": "^0.22.11",
     "typescript": "^4.4.4"
   },
   "engines": {

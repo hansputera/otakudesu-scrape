@@ -8,8 +8,23 @@ or
 
 > yarn add otakudesu-scraper --production
 
-# Documentation
-Need documentation? Go to [Wiki](https://github.com/hansputera/otakudesu-scrape/wiki)
+## Quick Start
+Basically, it is very simple to use.
 
-## Contribution
-Contribution are welcome :)
+If you use ES Module/TypeScript. Just type:
+
+```ts
+import { OtakudesuInstance } from 'otakudesu-scraper';
+
+const otaku = new OtakudesuInstance();
+otaku.getAnime('Boruto').then(console.log);
+```
+
+And, if you use CommonJS. Just follow the codes above, and change `import { OtakudesuInstance } from 'otakudesu-scraper';` to `const { OtakudesuInstance } = require('otakudesu-scraper');`
+
+## Documentation
+Need documentation? [Check this out!](https://hansputera.github.io/otakudesu-scrape)
+
+## Contribution, and issues
+Contributions are welcome, and if you have any issues with this package, you are welcome to open the issue on the [github repository](https://github.com/hansputera/otakudesu-scrape/issues).
+
