@@ -26,8 +26,8 @@
   "homepage": "https://github.com/hansputera/otakudesu-scrape",
   "devDependencies": {
     "@types/node": "16.11.36",
-    "@typescript-eslint/eslint-plugin": "5.2.0",
-    "@typescript-eslint/parser": "5.2.0",
+    "@typescript-eslint/eslint-plugin": "5.26.0",
+    "@typescript-eslint/parser": "5.26.0",
     "eslint": "8.16.0",
     "eslint-config-google": "0.14.0",
     "rimraf": "3.0.2",
