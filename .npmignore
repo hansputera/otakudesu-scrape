@@ -4,3 +4,4 @@ yarn.lock
 .eslintrc.json
 src/
 docs/
+.yarn/
