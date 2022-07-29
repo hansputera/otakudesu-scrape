@@ -1,6 +1,6 @@
 {
   "name": "otakudesu-scraper",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A module that retrieves data from otakudesu.vip. Now with TypeScript!",
   "main": "./dist/index.js",
   "typings": "./typings/index.d.ts",
@@ -21,7 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "cheerio": "^1.0.0-rc.5",
-    "hanif-tiny-http": "^1.0.6"
+    "hanif-tiny-http": "^1.0.7"
   },
   "homepage": "https://github.com/hansputera/otakudesu-scrape",
   "devDependencies": {
@@ -36,5 +36,6 @@
   },
   "engines": {
     "node": ">=16.10.0"
-  }
+  },
+  "packageManager": "yarn@3.2.2"
 }

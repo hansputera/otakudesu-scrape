@@ -4,3 +4,5 @@ yarn.lock
 src/test.ts
 dist/test.js
 typings/test.*
+.yarn/cache
+.yarn/*.gz
