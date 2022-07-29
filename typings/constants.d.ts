@@ -1,4 +1,4 @@
-export declare const baseURL = "https://otakudesu.vip";
+export declare const baseURL = "https://otakudesu.pro";
 export declare const ListEndpoint: {
     genreList: string;
     ongoing: string;

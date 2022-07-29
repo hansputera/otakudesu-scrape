@@ -1,6 +1,4 @@
-/// <reference types="node" />
 import { Util } from 'hanif-tiny-http/dist/util';
-import { EventEmitter } from 'node:events';
 export declare const monthsDefined: {
     okt: string;
     mar: string;
@@ -24,7 +22,6 @@ export declare const daysDefined: {
     sabtu: string;
     minggu: string;
 };
-export declare const signal: EventEmitter;
 export interface ResolvedReleaseDate {
     date: number;
     day: string;
@@ -50,4 +47,3 @@ export declare class OtakUtil extends Util {
      */
     static validateDownloadUrl(url: string): boolean;
 }
-export declare const handleException: <T extends Function>(__: object, _: string, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T>;
