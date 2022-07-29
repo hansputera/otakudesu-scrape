@@ -1,6 +1,5 @@
 import {TinyHttpClient} from 'hanif-tiny-http';
 import {PassThrough} from 'node:stream';
-import {handleException} from '.';
 
 import {baseURL} from './constants';
 import {
@@ -40,7 +39,6 @@ export class OtakudesuInstance {
    * @description You can use this method for getting genre list.
    * @return {Genre[]}
    */
-  @handleException
   public listGenre(): Promise<Genre[]> {
     return getGenreList(this.request);
   }
@@ -49,7 +47,6 @@ export class OtakudesuInstance {
    * @description You can use this method for getting ongoing anime list.
    * @return {OngoingAnime[]}
    */
-  @handleException
   public listOngoing(): Promise<OngoingAnime[]> {
     return getOngoingList(this.request);
   }
@@ -59,7 +56,6 @@ export class OtakudesuInstance {
    * site homepage.
    * @return {HomeAnimeUpdate[]}
    */
-  @handleException
   public listHomeUpdate(): Promise<HomeAnimeUpdate[]> {
     return getHomeUpdates(this.request);
   }
@@ -69,7 +65,6 @@ export class OtakudesuInstance {
    * @param {String} anime - Fill this parameter with anime name. (Eg. Boruto)
    * @return {Anime[]}
    */
-  @handleException
   public getAnime(anime: string): Promise<Anime[]> {
     return getAnime(this.request, anime);
   }
@@ -79,7 +74,6 @@ export class OtakudesuInstance {
    * @param {String} slugAnime - Fill this parameter with anime slug.
    * @return {ExtraAnime}
    */
-  @handleException
   public getExtraAnime(slugAnime: string): Promise<ExtraAnime | undefined> {
     return getExtraAnime(this.request, slugAnime);
   }
@@ -89,7 +83,6 @@ export class OtakudesuInstance {
    * @param {String} downloadUrl - Download URL (Episode URL)
    * @return {Download[]}
    */
-  @handleException
   public getDownloadsByUrl(downloadUrl: string): Promise<Download[]> {
     return getDownloads(this.request, downloadUrl);
   }
@@ -98,7 +91,6 @@ export class OtakudesuInstance {
    * @param {String} downloadUrl - Download URL
    * @return {PassThrough}
    */
-  @handleException
   public getStream(downloadUrl: string): Promise<PassThrough | undefined> {
     return getAnimeStream(this.request, downloadUrl);
   }
