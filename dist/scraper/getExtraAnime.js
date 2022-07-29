@@ -39,7 +39,7 @@ const getExtraAnime = (request, slug) => __awaiter(void 0, void 0, void 0, funct
         synopsis: $('.sinopc').text(),
         image: $('.fotoanime > img').attr('src'),
         name: slug,
-        url: util_1.OtakUtil.resolveUri((0, constants_1.getAnimeEndpoint)(slug), request),
+        url: util_1.OtakUtil.resolveUri((0, constants_1.getAnimeEndpoint)(slug), request).href,
     };
 });
 exports.getExtraAnime = getExtraAnime;

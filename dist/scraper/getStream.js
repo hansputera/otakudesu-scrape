@@ -25,14 +25,13 @@ const getAnimeStream = (req, url) => __awaiter(void 0, void 0, void 0, function*
         const desuStream = $('.player-embed > .responsive-embed-stream > iframe').attr('src');
         // getting desu video
         const responseDesu = yield hanif_tiny_http_1.tinyHttp.get(desuStream);
-        const $desu = (0, cheerio_1.load)(responseDesu.getContent());
-        const aaa = yield hanif_tiny_http_1.tinyHttp.get($desu('#mediaplayer > source').attr('src'), {
+        const desuStreamRes = yield hanif_tiny_http_1.tinyHttp.get((0, cheerio_1.load)(responseDesu.getContent())('#mediaplayer > source').attr('src'), {
             stream: true,
         });
-        return aaa.stream;
+        return desuStreamRes.stream;
     }
     catch (err) {
-        __1.signal.emit('error', err);
+        console.error(err);
         return undefined;
     }
 });

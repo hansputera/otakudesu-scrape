@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getSearchAnimeEndpoint = exports.getGenreEndpoint = exports.getAnimeEndpoint = exports.ListEndpoint = exports.baseURL = void 0;
-exports.baseURL = 'https://otakudesu.vip';
+exports.baseURL = 'https://otakudesu.pro';
 exports.ListEndpoint = {
     genreList: './genre-list',
     ongoing: './ongoing-anime',

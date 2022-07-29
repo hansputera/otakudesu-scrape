@@ -1,8 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.handleException = exports.OtakUtil = exports.signal = exports.daysDefined = exports.monthsDefined = void 0;
+exports.OtakUtil = exports.daysDefined = exports.monthsDefined = void 0;
 const util_1 = require("hanif-tiny-http/dist/util");
-const node_events_1 = require("node:events");
 exports.monthsDefined = {
     'okt': 'October',
     'mar': 'March',
@@ -26,9 +25,6 @@ exports.daysDefined = {
     'sabtu': 'Saturday',
     'minggu': 'Sunday',
 };
-exports.signal = new node_events_1.EventEmitter({
-    'captureRejections': true,
-});
 ;
 /**
  * @class OtakUtil
@@ -68,26 +64,3 @@ class OtakUtil extends util_1.Util {
     }
 }
 exports.OtakUtil = OtakUtil;
-const handleException = (__, _, descriptor) => {
-    return {
-        configurable: true,
-        get() {
-            var _a;
-            try {
-                const bound = (_a = descriptor.value) === null || _a === void 0 ? void 0 : _a.bind(this);
-                Object.defineProperty(this, _, {
-                    value: bound,
-                    configurable: true,
-                    writable: true,
-                });
-                exports.signal.emit('executed', { t: bound, timestamp: Date.now() });
-                return bound;
-            }
-            catch (err) {
-                exports.signal.emit('error', err);
-                return undefined;
-            }
-        },
-    };
-};
-exports.handleException = handleException;

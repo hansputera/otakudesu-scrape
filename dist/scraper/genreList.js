@@ -18,6 +18,7 @@ const getGenreList = (request) => __awaiter(void 0, void 0, void 0, function* ()
     const $ = (0, cheerio_1.load)(response.getContent());
     return $('.venser > ul.genres > li > a')
         .map((_, genEl) => ({ name: $(genEl).text().trim(),
-        url: util_1.Util.resolveUri($(genEl).attr('href'), request) })).toArray();
+        url: util_1.Util.resolveUri($(genEl).attr('href'), request).href,
+    })).toArray();
 });
 exports.getGenreList = getGenreList;

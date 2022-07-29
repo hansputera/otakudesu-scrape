@@ -1,14 +1,7 @@
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OtakudesuInstance = void 0;
 const hanif_tiny_http_1 = require("hanif-tiny-http");
-const _1 = require(".");
 const constants_1 = require("./constants");
 const scraper_1 = require("./scraper");
 const util_1 = require("./util");
@@ -87,25 +80,4 @@ class OtakudesuInstance {
         return (0, scraper_1.getAnimeStream)(this.request, downloadUrl);
     }
 }
-__decorate([
-    _1.handleException
-], OtakudesuInstance.prototype, "listGenre", null);
-__decorate([
-    _1.handleException
-], OtakudesuInstance.prototype, "listOngoing", null);
-__decorate([
-    _1.handleException
-], OtakudesuInstance.prototype, "listHomeUpdate", null);
-__decorate([
-    _1.handleException
-], OtakudesuInstance.prototype, "getAnime", null);
-__decorate([
-    _1.handleException
-], OtakudesuInstance.prototype, "getExtraAnime", null);
-__decorate([
-    _1.handleException
-], OtakudesuInstance.prototype, "getDownloadsByUrl", null);
-__decorate([
-    _1.handleException
-], OtakudesuInstance.prototype, "getStream", null);
 exports.OtakudesuInstance = OtakudesuInstance;
