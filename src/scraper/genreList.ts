@@ -13,7 +13,8 @@ Promise<Genre[]> => {
   return $('.venser > ul.genres > li > a')
       .map((_, genEl) =>
         ({name: $(genEl).text().trim(),
-          url: Util.resolveUri($(genEl).attr('href') as string,
+          url: Util.resolveUri($(genEl).attr('href')!,
               request,
-          )})).toArray<Genre>();
+          ).href,
+        })).toArray<Genre>();
 };

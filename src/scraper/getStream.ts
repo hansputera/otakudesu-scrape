@@ -1,7 +1,7 @@
 import {load} from 'cheerio';
 import {tinyHttp, TinyHttpClient} from 'hanif-tiny-http';
 import type {PassThrough} from 'node:stream';
-import {OtakUtil, signal} from '..';
+import {OtakUtil} from '..';
 
 export const getAnimeStream = async (req: TinyHttpClient, url: string):
 Promise<PassThrough | undefined> => {
@@ -20,14 +20,13 @@ Promise<PassThrough | undefined> => {
 
     // getting desu video
     const responseDesu = await tinyHttp.get(desuStream as string);
-    const $desu = load(responseDesu.getContent());
-    const aaa = await tinyHttp.get(
-        $desu('#mediaplayer > source').attr('src') as string, {
+    const desuStreamRes = await tinyHttp.get(
+        load(responseDesu.getContent())('#mediaplayer > source').attr('src') as string, {
           stream: true,
         });
-    return aaa.stream;
+    return desuStreamRes.stream;
   } catch (err) {
-    signal.emit('error', err);
+    console.error(err);
     return undefined;
   }
 };

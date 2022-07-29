@@ -34,6 +34,6 @@ Promise<ExtraAnime | undefined> => {
     synopsis: $('.sinopc').text(),
     image: $('.fotoanime > img').attr('src') as string,
     name: slug,
-    url: OtakUtil.resolveUri(getAnimeEndpoint(slug), request),
+    url: OtakUtil.resolveUri(getAnimeEndpoint(slug), request).href,
   };
 };
