@@ -1,3 +1,2 @@
-import { TinyHttpClient } from 'hanif-tiny-http';
 import type { ExtraAnime } from '../types';
-export declare const getExtraAnime: (request: TinyHttpClient, slug: string) => Promise<ExtraAnime | undefined>;
+export declare const getExtraAnime: (requestUrl: string, slug: string) => Promise<ExtraAnime | undefined>;

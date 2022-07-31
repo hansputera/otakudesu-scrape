@@ -1,3 +1,2 @@
-import { TinyHttpClient } from 'hanif-tiny-http';
 import type { Anime } from '../types';
-export declare const getAnime: (request: TinyHttpClient, q: string, ext?: boolean) => Promise<Anime[]>;
+export declare const getAnime: (requestUrl: string, q: string, ext?: boolean) => Promise<Anime[]>;

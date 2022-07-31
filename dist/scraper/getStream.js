@@ -11,24 +11,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAnimeStream = void 0;
 const cheerio_1 = require("cheerio");
-const hanif_tiny_http_1 = require("hanif-tiny-http");
+const phin = require("phin");
 const __1 = require("..");
-const getAnimeStream = (req, url) => __awaiter(void 0, void 0, void 0, function* () {
+const node_stream_1 = require("node:stream");
+const getAnimeStream = (requestUrl, url) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         if (!__1.OtakUtil.validateDownloadUrl(url))
             return undefined;
         else if (/batch/gi.test(url)) {
             throw new TypeError('Batch video isn\'t supported on this method');
         }
-        const response = yield req.get(url);
-        const $ = (0, cheerio_1.load)(response.getContent());
+        const response = yield phin({
+            url: new URL(url, requestUrl),
+        });
+        const $ = (0, cheerio_1.load)(response.body.toString('utf8'));
         const desuStream = $('.player-embed > .responsive-embed-stream > iframe').attr('src');
         // getting desu video
-        const responseDesu = yield hanif_tiny_http_1.tinyHttp.get(desuStream);
-        const desuStreamRes = yield hanif_tiny_http_1.tinyHttp.get((0, cheerio_1.load)(responseDesu.getContent())('#mediaplayer > source').attr('src'), {
+        const responseDesu = yield phin(desuStream);
+        const desuStreamRes = yield phin({
+            url: (0, cheerio_1.load)(responseDesu.body.toString('utf8'))('#mediaplayer > source').attr('src'),
             stream: true,
         });
-        return desuStreamRes.stream;
+        return desuStreamRes.stream.pipe(new node_stream_1.PassThrough());
     }
     catch (err) {
         console.error(err);

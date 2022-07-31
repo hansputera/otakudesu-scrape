@@ -11,13 +11,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getExtraAnime = void 0;
 const cheerio_1 = require("cheerio");
+const phin = require("phin");
 const constants_1 = require("../constants");
-const util_1 = require("../util");
-const getExtraAnime = (request, slug) => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield request.get((0, constants_1.getAnimeEndpoint)(slug));
-    if (!response.isOk)
+const getExtraAnime = (requestUrl, slug) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield phin({
+        url: new URL((0, constants_1.getAnimeEndpoint)(slug), requestUrl),
+    });
+    if (response.statusCode < 200 && response.statusCode >= 300) {
         return undefined;
-    const $ = (0, cheerio_1.load)(response.getContent());
+    }
+    const $ = (0, cheerio_1.load)(response.body.toString());
     const details = $('.infozingle > p').map((_, el) => {
         const value = $(el).text().split(':')[1].trim();
         return {
@@ -39,7 +42,7 @@ const getExtraAnime = (request, slug) => __awaiter(void 0, void 0, void 0, funct
         synopsis: $('.sinopc').text(),
         image: $('.fotoanime > img').attr('src'),
         name: slug,
-        url: util_1.OtakUtil.resolveUri((0, constants_1.getAnimeEndpoint)(slug), request).href,
+        url: new URL((0, constants_1.getAnimeEndpoint)(slug), requestUrl).href,
     };
 });
 exports.getExtraAnime = getExtraAnime;

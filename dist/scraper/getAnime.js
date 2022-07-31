@@ -11,11 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAnime = void 0;
 const cheerio_1 = require("cheerio");
+const phin = require("phin");
 const _1 = require(".");
 const constants_1 = require("../constants");
-const getAnime = (request, q, ext = false) => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield request.get((0, constants_1.getSearchAnimeEndpoint)(q));
-    const $ = (0, cheerio_1.load)(response.getContent());
+const getAnime = (requestUrl, q, ext = false) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield phin({
+        url: new URL((0, constants_1.getSearchAnimeEndpoint)(q), requestUrl),
+    });
+    const $ = (0, cheerio_1.load)(response.body.toString());
     return $('ul.chivsrc > li').map((_, element) => {
         var _a;
         return ({
@@ -36,7 +39,7 @@ const getAnime = (request, q, ext = false) => __awaiter(void 0, void 0, void 0, 
             slug: (_a = $(element).find('h2 > a').attr('href')) === null || _a === void 0 ? void 0 : _a.split('/').filter((s) => s.length).pop(),
             extra: () => {
                 var _a;
-                return (0, _1.getExtraAnime)(request, (_a = $(element).find('h2 > a').attr('href')) === null || _a === void 0 ? void 0 : _a.split('/').filter((s) => s.length).pop());
+                return (0, _1.getExtraAnime)(requestUrl, (_a = $(element).find('h2 > a').attr('href')) === null || _a === void 0 ? void 0 : _a.split('/').filter((s) => s.length).pop());
             },
         });
     }).toArray();

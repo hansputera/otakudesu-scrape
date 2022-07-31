@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OtakUtil = exports.daysDefined = exports.monthsDefined = void 0;
-const util_1 = require("hanif-tiny-http/dist/util");
 exports.monthsDefined = {
     'okt': 'October',
     'mar': 'March',
@@ -29,13 +28,7 @@ exports.daysDefined = {
 /**
  * @class OtakUtil
  */
-class OtakUtil extends util_1.Util {
-    /**
-       * @description OtakUtil constructor
-       */
-    constructor() {
-        super();
-    }
+class OtakUtil {
     /**
      * @description Resolve release date
      * @param {String} date - (eg. 23 Okt Minggu)
@@ -60,7 +53,7 @@ class OtakUtil extends util_1.Util {
      */
     static validateDownloadUrl(url) {
         return /^(http(s)?):\/\/(.*)\.(.*)\/[a-zA-Z0-9].+(\/)?/gi
-            .test(url) && this.validateURL(url);
+            .test(url);
     }
 }
 exports.OtakUtil = OtakUtil;

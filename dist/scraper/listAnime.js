@@ -11,10 +11,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getListAnime = void 0;
 const cheerio_1 = require("cheerio");
+const phin = require("phin");
 const constants_1 = require("../constants");
-const getListAnime = (request) => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield request.get(constants_1.ListEndpoint.animeList);
-    const $ = (0, cheerio_1.load)(response.getContent());
+const getListAnime = (requestUrl) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield phin({
+        url: new URL(constants_1.ListEndpoint.animeList, requestUrl),
+    });
+    const $ = (0, cheerio_1.load)(response.body.toString('utf8'));
     return $('#abtext > .bariskelom').map((_, el) => {
         var _a;
         return ({

@@ -11,12 +11,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getDownloads = void 0;
 const cheerio_1 = require("cheerio");
+const phin = require("phin");
 const util_1 = require("../util");
-const getDownloads = (request, url) => __awaiter(void 0, void 0, void 0, function* () {
+const getDownloads = (requestUrl, url) => __awaiter(void 0, void 0, void 0, function* () {
     if (!util_1.OtakUtil.validateDownloadUrl(url))
         return [];
-    const response = yield request.get(url);
-    const $ = (0, cheerio_1.load)(response.getContent());
+    const response = yield phin({
+        url: new URL(url, requestUrl),
+    });
+    const $ = (0, cheerio_1.load)(response.body.toString('utf8'));
     if (!$('title').text().trim().match(/otaku/gi))
         return [];
     const downloads = $(url.match(/batch/gi) ? '.batchlink > ul > li' :

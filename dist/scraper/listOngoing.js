@@ -11,11 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getOngoingList = void 0;
 const cheerio_1 = require("cheerio");
+const phin = require("phin");
 const constants_1 = require("../constants");
 const util_1 = require("../util");
-const getOngoingList = (request) => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield request.get(constants_1.ListEndpoint.ongoing);
-    const $ = (0, cheerio_1.load)(response.getContent());
+const getOngoingList = (requestUrl) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield phin({
+        url: new URL(constants_1.ListEndpoint.ongoing, requestUrl),
+    });
+    const $ = (0, cheerio_1.load)(response.body.toString('utf8'));
     return $('.venz > ul > li').map((_, element) => ({
         episode: parseInt($(element).find('.detpost > .epz').text()
             .replace(/[a-z]/gi, '').trim()),

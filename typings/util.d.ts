@@ -1,4 +1,3 @@
-import { Util } from 'hanif-tiny-http/dist/util';
 export declare const monthsDefined: {
     okt: string;
     mar: string;
@@ -30,11 +29,7 @@ export interface ResolvedReleaseDate {
 /**
  * @class OtakUtil
  */
-export declare class OtakUtil extends Util {
-    /**
-       * @description OtakUtil constructor
-       */
-    constructor();
+export declare class OtakUtil {
     /**
      * @description Resolve release date
      * @param {String} date - (eg. 23 Okt Minggu)

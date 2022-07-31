@@ -11,10 +11,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHomeUpdates = void 0;
 const cheerio_1 = require("cheerio");
+const phin = require("phin");
 const util_1 = require("../util");
-const getHomeUpdates = (request) => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield request.get('./');
-    const $ = (0, cheerio_1.load)(response.getContent());
+const getHomeUpdates = (requestUrl) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield phin({
+        url: requestUrl,
+    });
+    const $ = (0, cheerio_1.load)(response.body.toString('utf8'));
     return $('.venz > ul > li').map((_, el) => {
         var _a;
         return ({

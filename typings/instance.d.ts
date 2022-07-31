@@ -1,5 +1,4 @@
 /// <reference types="node" />
-import { TinyHttpClient } from 'hanif-tiny-http';
 import { PassThrough } from 'node:stream';
 import type { Genre, Anime, OngoingAnime, ExtraAnime, Download, HomeAnimeUpdate } from './types';
 /**
@@ -12,7 +11,6 @@ export declare class OtakudesuInstance {
        * @param {String} baseUrl - Base URL For Otakudesu site
        */
     constructor(baseUrl?: string);
-    request: TinyHttpClient;
     /**
      * @description You can use this method for getting genre list.
      * @return {Genre[]}
