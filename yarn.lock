@@ -307,6 +307,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"centra@npm:^2.4.2":
+  version: 2.5.0
+  resolution: "centra@npm:2.5.0"
+  checksum: f3c66d372a886cd2311bc6b25a4ba4e354170928161bba0bc0995d9697e65b93bc7de115f85c4b8202f8d556f629434531ef2326ce36f222a4e6dde86e36fc75
+  languageName: node
+  linkType: hard
+
 "chalk@npm:^4.0.0":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
@@ -809,13 +816,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hanif-tiny-http@npm:^1.0.7":
-  version: 1.1.0
-  resolution: "hanif-tiny-http@npm:1.1.0"
-  checksum: 58fcb6815a4bd102e46b0d05388fabb8c05b289c0e780d15a4fedd9f82b9065a00d4c62d1c38f92e1378c6a88c91dae66d9996cb1b112a33105a6d215368da07
-  languageName: node
-  linkType: hard
-
 "has-flag@npm:^4.0.0":
   version: 4.0.0
   resolution: "has-flag@npm:4.0.0"
@@ -1080,7 +1080,7 @@ __metadata:
     cheerio: ^1.0.0-rc.5
     eslint: 8.17.0
     eslint-config-google: 0.14.0
-    hanif-tiny-http: ^1.0.7
+    phin: ^3.6.1
     rimraf: 3.0.2
     typedoc: 0.22.17
     typescript: 4.7.4
@@ -1130,6 +1130,15 @@ __metadata:
   version: 4.0.0
   resolution: "path-type@npm:4.0.0"
   checksum: 5b1e2daa247062061325b8fdbfd1fb56dde0a448fb1455453276ea18c60685bdad23a445dc148cf87bc216be1573357509b7d4060494a6fd768c7efad833ee45
+  languageName: node
+  linkType: hard
+
+"phin@npm:^3.6.1":
+  version: 3.6.1
+  resolution: "phin@npm:3.6.1"
+  dependencies:
+    centra: ^2.4.2
+  checksum: 17fbddfec9d6f1359460fa6f7f33db9e4d5380bda1bd2745e75810b92e53fd3c5713086c951683a8c8b6526aaa172b031b2858b1c66c3a120a06963ffe26136e
   languageName: node
   linkType: hard
 

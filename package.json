@@ -21,7 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "cheerio": "^1.0.0-rc.5",
-    "hanif-tiny-http": "^1.0.7"
+    "phin": "^3.6.1"
   },
   "homepage": "https://github.com/hansputera/otakudesu-scrape",
   "devDependencies": {
