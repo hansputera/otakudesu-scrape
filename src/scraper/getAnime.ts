@@ -1,5 +1,5 @@
 import {load} from 'cheerio';
-import {TinyHttpClient} from 'hanif-tiny-http';
+import * as phin from 'phin';
 
 import {getExtraAnime} from '.';
 import type {ExtraAnime} from '..';
@@ -7,10 +7,12 @@ import type {ExtraAnime} from '..';
 import {getSearchAnimeEndpoint} from '../constants';
 import type {Anime} from '../types';
 
-export const getAnime = async (request: TinyHttpClient, q: string, ext = false):
+export const getAnime = async (requestUrl: string, q: string, ext = false):
 Promise<Anime[]> => {
-  const response = await request.get(getSearchAnimeEndpoint(q));
-  const $ = load(response.getContent());
+  const response = await phin({
+    url: new URL(getSearchAnimeEndpoint(q), requestUrl),
+  });
+  const $ = load(response.body.toString());
 
   return $('ul.chivsrc > li').map((_, element) => ({
     name: $(element).find('h2').text().trim(),
@@ -29,7 +31,7 @@ Promise<Anime[]> => {
     url: $(element).find('h2 > a').attr('href') as string,
     slug: $(element).find('h2 > a').attr('href')?.split('/')
         .filter((s) => s.length).pop() as string,
-    extra: () => getExtraAnime(request,
+    extra: () => getExtraAnime(requestUrl,
         $(element).find('h2 > a').attr('href')?.split('/')
             .filter((s) => s.length).pop() as string,
     ) as Promise<ExtraAnime>,

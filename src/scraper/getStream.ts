@@ -1,9 +1,9 @@
 import {load} from 'cheerio';
-import {tinyHttp, TinyHttpClient} from 'hanif-tiny-http';
-import type {PassThrough} from 'node:stream';
+import * as phin from 'phin';
 import {OtakUtil} from '..';
+import {PassThrough} from 'node:stream';
 
-export const getAnimeStream = async (req: TinyHttpClient, url: string):
+export const getAnimeStream = async (requestUrl: string, url: string):
 Promise<PassThrough | undefined> => {
   try {
     if (!OtakUtil.validateDownloadUrl(url)) return undefined;
@@ -11,20 +11,24 @@ Promise<PassThrough | undefined> => {
       throw new TypeError('Batch video isn\'t supported on this method');
     }
 
-    const response = await req.get(url);
+    const response = await phin({
+      url: new URL(url, requestUrl),
+    });
 
-    const $ = load(response.getContent());
+    const $ = load(response.body.toString('utf8'));
     const desuStream = $(
         '.player-embed > .responsive-embed-stream > iframe',
     ).attr('src');
 
     // getting desu video
-    const responseDesu = await tinyHttp.get(desuStream as string);
-    const desuStreamRes = await tinyHttp.get(
-        load(responseDesu.getContent())('#mediaplayer > source').attr('src') as string, {
-          stream: true,
-        });
-    return desuStreamRes.stream;
+    const responseDesu = await phin(desuStream!);
+    const desuStreamRes = await phin({
+      url: load(responseDesu.body.toString('utf8'))(
+          '#mediaplayer > source').attr('src')!,
+      stream: true,
+    });
+
+    return desuStreamRes.stream.pipe(new PassThrough());
   } catch (err) {
     console.error(err);
     return undefined;

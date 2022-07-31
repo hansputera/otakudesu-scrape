@@ -1,14 +1,16 @@
 import {load} from 'cheerio';
-import {TinyHttpClient} from 'hanif-tiny-http';
+import * as phin from 'phin';
 import {Download} from '../types';
 import {OtakUtil} from '../util';
 
-export const getDownloads = async (request: TinyHttpClient, url: string):
+export const getDownloads = async (requestUrl: string, url: string):
 Promise<Download[]> => {
   if (!OtakUtil.validateDownloadUrl(url)) return [];
 
-  const response = await request.get(url);
-  const $ = load(response.getContent());
+  const response = await phin({
+    url: new URL(url, requestUrl),
+  });
+  const $ = load(response.body.toString('utf8'));
 
   if (!$('title').text().trim().match(/otaku/gi)) return [];
 

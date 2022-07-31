@@ -1,14 +1,16 @@
 import {load} from 'cheerio';
-import {TinyHttpClient} from 'hanif-tiny-http';
+import * as phin from 'phin';
 
 import {ListEndpoint} from '../constants';
 import type {OngoingAnime} from '../types';
 import {OtakUtil} from '../util';
 
-export const getOngoingList = async (request: TinyHttpClient):
+export const getOngoingList = async (requestUrl: string):
 Promise<OngoingAnime[]> => {
-  const response = await request.get(ListEndpoint.ongoing);
-  const $ = load(response.getContent());
+  const response = await phin({
+    url: new URL(ListEndpoint.ongoing, requestUrl),
+  });
+  const $ = load(response.body.toString('utf8'));
 
   return $('.venz > ul > li').map((_, element) => ({
     episode: parseInt($(element).find('.detpost > .epz').text()

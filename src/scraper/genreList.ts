@@ -1,20 +1,22 @@
 import {load} from 'cheerio';
-import type {TinyHttpClient} from 'hanif-tiny-http';
-import {Util} from 'hanif-tiny-http/dist/util';
+import * as phin from 'phin';
 
 import {ListEndpoint} from '../constants';
 import type {Genre} from '../types';
 
-export const getGenreList = async (request: TinyHttpClient):
+export const getGenreList = async (requestUrl: string):
 Promise<Genre[]> => {
-  const response = await request.get(ListEndpoint.genreList);
-  const $ = load(response.getContent());
+  const response = await phin({
+    'url': new URL(ListEndpoint.genreList, requestUrl),
+  });
+
+  const $ = load(response.body.toString('utf8'));
 
   return $('.venser > ul.genres > li > a')
       .map((_, genEl) =>
         ({name: $(genEl).text().trim(),
-          url: Util.resolveUri($(genEl).attr('href')!,
-              request,
+          url: new URL($(genEl).attr('href')!,
+              requestUrl,
           ).href,
         })).toArray<Genre>();
 };

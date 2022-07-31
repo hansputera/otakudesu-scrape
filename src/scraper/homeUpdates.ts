@@ -1,13 +1,15 @@
 import {load} from 'cheerio';
-import {TinyHttpClient} from 'hanif-tiny-http';
+import * as phin from 'phin';
 
 import {HomeAnimeUpdate} from '../types';
 import {OtakUtil} from '../util';
 
-export const getHomeUpdates = async (request: TinyHttpClient):
+export const getHomeUpdates = async (requestUrl: string):
 Promise<HomeAnimeUpdate[]> => {
-  const response = await request.get('./');
-  const $ = load(response.getContent());
+  const response = await phin({
+    url: requestUrl,
+  });
+  const $ = load(response.body.toString('utf8'));
 
   return $('.venz > ul > li').map((_, el) => ({
     name: $(el).find('.thumb > a > .thumbz > .jdlflm').text().trim(),

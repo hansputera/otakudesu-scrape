@@ -1,13 +1,15 @@
 import {load} from 'cheerio';
-import {TinyHttpClient} from 'hanif-tiny-http';
+import * as phin from 'phin';
 
 import {ListEndpoint} from '../constants';
 import type {AnimeListItem} from '../types';
 
-export const getListAnime = async (request: TinyHttpClient):
+export const getListAnime = async (requestUrl: string):
 Promise<AnimeListItem[]> => {
-  const response = await request.get(ListEndpoint.animeList);
-  const $ = load(response.getContent());
+  const response = await phin({
+    url: new URL(ListEndpoint.animeList, requestUrl),
+  });
+  const $ = load(response.body.toString('utf8'));
 
   return $('#abtext > .bariskelom').map((_, el) => ({
     _index: parseInt($(el).find('.barispenz').text().trim()),

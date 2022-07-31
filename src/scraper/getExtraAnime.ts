@@ -1,15 +1,18 @@
 import {load} from 'cheerio';
-import {TinyHttpClient} from 'hanif-tiny-http';
+import * as phin from 'phin';
 
 import {getAnimeEndpoint} from '../constants';
 import type {Episode, ExtraAnime} from '../types';
-import {OtakUtil} from '../util';
 
-export const getExtraAnime = async (request: TinyHttpClient, slug: string):
+export const getExtraAnime = async (requestUrl: string, slug: string):
 Promise<ExtraAnime | undefined> => {
-  const response = await request.get(getAnimeEndpoint(slug));
-  if (!response.isOk) return undefined;
-  const $ = load(response.getContent());
+  const response = await phin({
+    url: new URL(getAnimeEndpoint(slug), requestUrl),
+  });
+  if (response.statusCode! < 200 && response.statusCode! >= 300) {
+    return undefined;
+  }
+  const $ = load(response.body.toString());
 
   const details = $('.infozingle > p').map((_, el) => {
     const value = $(el).text().split(':')[1].trim();
@@ -34,6 +37,6 @@ Promise<ExtraAnime | undefined> => {
     synopsis: $('.sinopc').text(),
     image: $('.fotoanime > img').attr('src') as string,
     name: slug,
-    url: OtakUtil.resolveUri(getAnimeEndpoint(slug), request).href,
+    url: new URL(getAnimeEndpoint(slug), requestUrl).href,
   };
 };

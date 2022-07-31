@@ -1,4 +1,3 @@
-import {TinyHttpClient} from 'hanif-tiny-http';
 import {PassThrough} from 'node:stream';
 
 import {baseURL} from './constants';
@@ -12,7 +11,6 @@ import type {
   Genre, Anime, OngoingAnime, ExtraAnime,
   Download, HomeAnimeUpdate,
 } from './types';
-import {OtakUtil} from './util';
 
 /**
  * @description - Otakudesu Instance, here you go.
@@ -22,25 +20,14 @@ export class OtakudesuInstance {
      *
      * @param {String} baseUrl - Base URL For Otakudesu site
      */
-  constructor(private baseUrl: string = baseURL) {
-    if (!OtakUtil.validateURL(baseUrl)) {
-      throw new TypeError('Invalid Base URL URL');
-    }
-  };
-
-  public request = new TinyHttpClient({
-    baseURL: this.baseUrl,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
-  });
+  constructor(private baseUrl: string = baseURL) {}
 
   /**
    * @description You can use this method for getting genre list.
    * @return {Genre[]}
    */
   public listGenre(): Promise<Genre[]> {
-    return getGenreList(this.request);
+    return getGenreList(this.baseUrl);
   }
 
   /**
@@ -48,7 +35,7 @@ export class OtakudesuInstance {
    * @return {OngoingAnime[]}
    */
   public listOngoing(): Promise<OngoingAnime[]> {
-    return getOngoingList(this.request);
+    return getOngoingList(this.baseUrl);
   }
 
   /**
@@ -57,7 +44,7 @@ export class OtakudesuInstance {
    * @return {HomeAnimeUpdate[]}
    */
   public listHomeUpdate(): Promise<HomeAnimeUpdate[]> {
-    return getHomeUpdates(this.request);
+    return getHomeUpdates(this.baseUrl);
   }
 
   /**
@@ -66,7 +53,7 @@ export class OtakudesuInstance {
    * @return {Anime[]}
    */
   public getAnime(anime: string): Promise<Anime[]> {
-    return getAnime(this.request, anime);
+    return getAnime(this.baseUrl, anime);
   }
 
   /**
@@ -75,7 +62,7 @@ export class OtakudesuInstance {
    * @return {ExtraAnime}
    */
   public getExtraAnime(slugAnime: string): Promise<ExtraAnime | undefined> {
-    return getExtraAnime(this.request, slugAnime);
+    return getExtraAnime(this.baseUrl, slugAnime);
   }
 
   /**
@@ -84,7 +71,7 @@ export class OtakudesuInstance {
    * @return {Download[]}
    */
   public getDownloadsByUrl(downloadUrl: string): Promise<Download[]> {
-    return getDownloads(this.request, downloadUrl);
+    return getDownloads(this.baseUrl, downloadUrl);
   }
 
   /**
@@ -92,7 +79,7 @@ export class OtakudesuInstance {
    * @return {PassThrough}
    */
   public getStream(downloadUrl: string): Promise<PassThrough | undefined> {
-    return getAnimeStream(this.request, downloadUrl);
+    return getAnimeStream(this.baseUrl, downloadUrl);
   }
 }
 

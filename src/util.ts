@@ -1,5 +1,3 @@
-import {Util} from 'hanif-tiny-http/dist/util';
-
 export const monthsDefined = {
   'okt': 'October',
   'mar': 'March',
@@ -34,14 +32,7 @@ export interface ResolvedReleaseDate {
 /**
  * @class OtakUtil
  */
-export class OtakUtil extends Util {
-  /**
-     * @description OtakUtil constructor
-     */
-  constructor() {
-    super();
-  }
-
+export class OtakUtil {
   /**
    * @description Resolve release date
    * @param {String} date - (eg. 23 Okt Minggu)
@@ -71,6 +62,6 @@ export class OtakUtil extends Util {
    */
   static validateDownloadUrl(url: string): boolean {
     return /^(http(s)?):\/\/(.*)\.(.*)\/[a-zA-Z0-9].+(\/)?/gi
-        .test(url) && this.validateURL(url);
+        .test(url);
   }
 }
