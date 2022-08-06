@@ -4,7 +4,7 @@
     "includeVersion": true,
     "exclude": [
         "**/*.json",
-        "**/test.*"
+        "**/__tests__/**/*"
     ],
     "name": "Otakudesu Scraper",
     "pretty": true,
