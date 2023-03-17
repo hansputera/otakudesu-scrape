@@ -307,10 +307,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"centra@npm:^2.4.2":
-  version: 2.5.0
-  resolution: "centra@npm:2.5.0"
-  checksum: f3c66d372a886cd2311bc6b25a4ba4e354170928161bba0bc0995d9697e65b93bc7de115f85c4b8202f8d556f629434531ef2326ce36f222a4e6dde86e36fc75
+"centra@npm:^2.6.0":
+  version: 2.6.0
+  resolution: "centra@npm:2.6.0"
+  checksum: 3b4d44762bceb9e20f7e45d01ffb9e462523cf8a0186f6710c08863f0455bceabfbcb754d6b01ea095c3bdee09c4ebef912669dc2b391a9af400e9ba7e398bc5
   languageName: node
   linkType: hard
 
@@ -1134,11 +1134,11 @@ __metadata:
   linkType: hard
 
 "phin@npm:^3.6.1":
-  version: 3.6.1
-  resolution: "phin@npm:3.6.1"
+  version: 3.7.0
+  resolution: "phin@npm:3.7.0"
   dependencies:
-    centra: ^2.4.2
-  checksum: 17fbddfec9d6f1359460fa6f7f33db9e4d5380bda1bd2745e75810b92e53fd3c5713086c951683a8c8b6526aaa172b031b2858b1c66c3a120a06963ffe26136e
+    centra: ^2.6.0
+  checksum: b0a35e943615c40a3ccd7d6a2dd062568258e6b36dceed3150d13d28cad906e9028e756ad6efe66963b43937879e8a3593f986d17aac968d42982b4e8702e539
   languageName: node
   linkType: hard
 
